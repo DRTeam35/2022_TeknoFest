@@ -85,6 +85,8 @@ def start(power):
     
 def calibration(pwm):
     #Kalibrasyon için öncelikle maximum PWM veriliyor
+    pwm.set_pwm(15, 0, 600)  # sağ ön dikey
+    pwm.set_pwm(14, 0, 600)  # sol ön dikey
     pwm.set_pwm(13, 0, 600)  # sağ arka dikey
     pwm.set_pwm(12, 0, 600)  # sol arka dikey
     pwm.set_pwm(11, 0, 600)  # sağ ön itici
@@ -92,8 +94,10 @@ def calibration(pwm):
     pwm.set_pwm(9, 0, 600)  # sağ arka itici
     pwm.set_pwm(8, 0, 600)  # sol arka itici
     #Motorların sesinin bitmesine kadar geçen süre
-    time.sleep(2)
+    time.sleep(5)
     #Daha sonra Minimum PWM değeri giriliyor
+    pwm.set_pwm(15, 0, 1)  # sağ ön dikey
+    pwm.set_pwm(14, 0, 1)  # sol ön dikey
     pwm.set_pwm(13, 0, 1)  # sağ arka dikey
     pwm.set_pwm(12, 0, 1)  # sol arka dikey
     pwm.set_pwm(11, 0, 1)  # sağ ön itici
@@ -101,10 +105,12 @@ def calibration(pwm):
     pwm.set_pwm(9, 0, 1)  # sağ arka itici
     pwm.set_pwm(8, 0, 1)  # sol arka itici
     # Motorların sesinin bitmesine kadar geçen süre
-    time.sleep(2)
+    time.sleep(5)
     
     # pwm.set_pwm(channel_number, pwm_high_start, pwm_high_stop)
     #En son olarak motorların durgun olduğu orta nokta PWM'i veriliyor
+    pwm.set_pwm(15, 0, 318)  # sağ ön dikey
+    pwm.set_pwm(14, 0, 318)  # sol ön dikey
     pwm.set_pwm(13, 0, 318)  # sağ arka dikey
     pwm.set_pwm(12, 0, 318)  # sol arka dikey
     pwm.set_pwm(11, 0, 318)  # sağ ön itici
@@ -112,7 +118,7 @@ def calibration(pwm):
     pwm.set_pwm(9, 0, 318)  # sağ arka itici
     pwm.set_pwm(8, 0, 318)  # sol arka itici
     # Motorların sesinin bitmesine kadar geçen süre
-    time.sleep(2)
+    time.sleep(4)
 
 def motor_fri(pwm,p,last_error,pid_i,desired_angle):  # ileri motorlar
     #İleri gitme esnasında en düz p=285 değerinde gidiyor
@@ -144,7 +150,8 @@ def motor_u(pwm,p):  # yukarı motorlar
     pwm.set_pwm(12, 0, p)
     
 def motor_d(pwm,p):  # aşağı motorlar
-
+    pwm.set_pwm(15, 0, p)
+    pwm.set_pwm(14, 0, p)
     pwm.set_pwm(13, 0, p)
     pwm.set_pwm(12, 0, p)
 
@@ -185,6 +192,8 @@ def r_donus(pwm,p=325):
         pwm.set_pwm(8, 0, 318)
 
 def stop(pwm):  # motorları durdur
+    pwm.set_pwm(15, 0, 318)  # sağ ön dikey
+    pwm.set_pwm(14, 0, 318)  # sol ön dikey
     pwm.set_pwm(13, 0, 318)  # sağ arka dikey
     pwm.set_pwm(12, 0, 318)  # sol arka dikey
     pwm.set_pwm(11, 0, 318)  # sağ ön itici
